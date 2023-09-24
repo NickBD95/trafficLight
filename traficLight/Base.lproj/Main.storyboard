@@ -53,6 +53,9 @@
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="START"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bay-PH-yzT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -67,8 +70,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="button" destination="hWn-6u-fXJ" id="Sud-CS-B7e"/>
-                        <outlet property="traficLight" destination="uST-r9-88P" id="QO5-rE-5xE"/>
+                        <outlet property="button" destination="hWn-6u-fXJ" id="t3r-BC-kIJ"/>
+                        <outlet property="traficLight" destination="uST-r9-88P" id="C7U-49-Kft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
