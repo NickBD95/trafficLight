@@ -18,6 +18,8 @@ class ViewController: UIViewController {
         traficLight.viewWithTag(1)?.alpha = 0.2
         traficLight.viewWithTag(2)?.alpha = 0.2
         traficLight.viewWithTag(3)?.alpha = 0.2
+        
+        button.layer.cornerRadius = 10
 
     }
     
