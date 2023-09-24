@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         traficLight.viewWithTag(1)?.alpha = 0.2
         traficLight.viewWithTag(2)?.alpha = 0.2
         traficLight.viewWithTag(3)?.alpha = 0.2
-        button.setTitle("START", for: .normal)
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         } else if traficLight.viewWithTag(1)?.alpha == 1 {
             traficLight.viewWithTag(1)?.alpha = 0.2
             traficLight.viewWithTag(2)?.alpha = 1
-        } else if traficLight.viewWithTag(2)?.alpha == 1 {
+        } else {
             traficLight.viewWithTag(2)?.alpha = 0.2
             traficLight.viewWithTag(3)?.alpha = 1
         }
