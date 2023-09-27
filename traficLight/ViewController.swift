@@ -10,39 +10,64 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var traficLight: UIStackView!
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var redView: UIView!
+    @IBOutlet weak var yellowView: UIView!
+    @IBOutlet weak var greenView: UIView!
+    
+    @IBOutlet weak var startButton: UIButton!
+    
+    private var currentLight = CurrentLight.red
+    
+    private let lightIsOn = 1.0
+    private let lightIsOff = 0.3
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        traficLight.viewWithTag(1)?.alpha = 0.2
-        traficLight.viewWithTag(2)?.alpha = 0.2
-        traficLight.viewWithTag(3)?.alpha = 0.2
         
-        button.layer.cornerRadius = 10
-
+        turnOffLights()
+        startButton.layer.cornerRadius = 10
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        traficLight.viewWithTag(1)?.layer.cornerRadius = (traficLight.viewWithTag(1)?.frame.width ?? 0) / 2
-        traficLight.viewWithTag(2)?.layer.cornerRadius = (traficLight.viewWithTag(2)?.frame.width ?? 0) / 2
-        traficLight.viewWithTag(3)?.layer.cornerRadius = (traficLight.viewWithTag(3)?.frame.width ?? 0) / 2
+    override func viewWillLayoutSubviews() {
+        redView.layer.cornerRadius = redView.frame.width / 2
+        yellowView.layer.cornerRadius = yellowView.frame.width / 2
+        greenView.layer.cornerRadius = greenView.frame.width / 2
     }
     
-    @IBAction func buttonPressed(_ sender: Any) {
-        button.setTitle("NEXT", for: .normal)
-      
-        if traficLight.viewWithTag(1)?.alpha != 1 && traficLight.viewWithTag(2)?.alpha != 1 {
-            traficLight.viewWithTag(1)?.alpha = 1
-            traficLight.viewWithTag(3)?.alpha = 0.2
-        } else if traficLight.viewWithTag(1)?.alpha == 1 {
-            traficLight.viewWithTag(1)?.alpha = 0.2
-            traficLight.viewWithTag(2)?.alpha = 1
-        } else {
-            traficLight.viewWithTag(2)?.alpha = 0.2
-            traficLight.viewWithTag(3)?.alpha = 1
+    @IBAction func startButtonPressed(_ sender: Any) {
+        if startButton.currentTitle == "START" {
+            startButton.setTitle("NEXT", for: .normal)
         }
+        
+        switch currentLight {
+            
+        case .red:
+            greenView.alpha = lightIsOff
+            redView.alpha = lightIsOn
+            currentLight = .yellow
+        case .yellow:
+            redView.alpha = lightIsOff
+            yellowView.alpha = lightIsOn
+            currentLight = .green
+        case .green:
+            yellowView.alpha = lightIsOff
+            greenView.alpha = lightIsOn
+            currentLight = .red
+        }
+        
+        
     }
+    
+    private func turnOffLights() {
+        redView.alpha = lightIsOff
+        yellowView.alpha = lightIsOff
+        greenView.alpha = lightIsOff
+    }
+}
 
+// MARK: - CurrentLight enum
+extension ViewController {
+    private enum CurrentLight {
+        case red, yellow, green
+    }
 }
